@@ -21,7 +21,7 @@ class Register{
             'password' => password_hash($this->password, PASSWORD_DEFAULT)
         ];
 
-        $jsonDB = './data/db.json';
+        $jsonDB = './data/customer.json';
 
         $existingData = file_exists($jsonDB) ? json_decode(file_get_contents($jsonDB), true) : [];
         $existingData[] = $customerData;
