@@ -11,9 +11,35 @@ class Login{
         $this->password = $password;
     }
 
-    public function login(){
+    private function loadCustomerData(){
+        $jsonDB = 'data/db.json';
 
+        if(file_exists($jsonDB)){
+            $data = file_get_contents($jsonDB);
+            return json_decode($data, true);
+        }
+
+        return false;
         
+    }
+    public function authenticate(){
+        
+        $customerData = $this->loadCustomerData();
+
+        if($customerData == false){
+            return false;
+        }
+
+        if(isset($customerData[$this->email])){
+            $password_hash = $customerData[$this->email]['password'];
+
+            if(password_verify($this->password, $password_hash)){
+                return true;
+            }
+        }
+
+        return false;
+
     }
 }
 
