@@ -1,5 +1,6 @@
 <?php 
 use App\Auth\Auth;
+use App\Transaction;
 
 
 require "vendor/autoload.php";
@@ -13,6 +14,8 @@ if ($input == 1) {
    
     $login = new Auth();
     $login->login();
+      
+
 
 
 }else if($input==2){
